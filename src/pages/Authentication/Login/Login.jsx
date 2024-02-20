@@ -26,30 +26,30 @@ const Login = () => {
 
   const loginHandler = async (e) => {
     e.preventDefault();
-
+  
     try {
       setLoading(true);
       const { data } = await loginService(login.input);
       setLoading(false);
-
+  
       toast.success(`Welcome back, ${data.foundUser.firstName}!`, {
         icon: "👋",
       });
-
+  
       localStorage.setItem("isAuth", true);
       localStorage.setItem("token", data.encodedToken);
       localStorage.setItem("user", JSON.stringify(data.foundUser));
-
+  
       setToken(data.encodedToken);
-
       setIsAuth(true);
-
       navigate("/");
     } catch (err) {
       setLoading(false);
-      setLogin({ ...login, error: err.response.data.errors[0] });
+      const errorMessage = err.response?.data?.errors?.[0] || "An error occurred while logging in.";
+      setLogin({ ...login, error: errorMessage });
     }
   };
+  
 
   return (
     <div className="page-wrapper">
