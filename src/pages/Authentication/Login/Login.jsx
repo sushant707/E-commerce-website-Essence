@@ -117,8 +117,8 @@ const Login = () => {
                     setLogin({
                       ...login,
                       input: {
-                        email: "himadri123@gmail.com",
-                        password: "himadri123",
+                        email: "sushant123@gmail.com",
+                        password: "sushant123",
                       },
                     })
                   }
